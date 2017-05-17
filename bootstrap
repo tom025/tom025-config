@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -e
+
+SYS_PIP=/usr/local/bin/pip
+SYS_VIRTUALENV=/usr/local/bin/virtualenv
+PATH=.virtualenv/bin:$PATH
+
+function install_homebrew() {
+  if [[ -d /usr/local/Homebrew ]]; then
+    echo "Homebrew already installed"
+  else
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    hash -r
+  fi
+}
+
+function brew_install() {
+  local package=$1
+  if brew ls --versions $package > /dev/null; then
+    echo "Brew package \"$package\" is already installed"
+  else
+    brew install $package
+  fi
+}
+
+function sys_pip_install() {
+  local package=$1
+  if $SYS_PIP show $package > /dev/null; then
+    echo "Pip package \"$package\" already installed"
+  else
+    $SYS_PIP install $package
+  fi
+}
+
+function pip_install() {
+  local package=$1
+  if pip show $package > /dev/null; then
+    echo "Pip package \"$package\" already installed in virtualenv"
+  else
+    pip install $package
+  fi
+}
+
+function virtualenv {
+  if [[ -x .virtualenv/bin/python ]]; then
+    echo "Virtualenv already setup"
+  else
+    $SYS_VIRTUALENV .virtualenv
+    hash -r
+  fi
+}
+
+function main() {
+  install_homebrew
+  brew_install python
+  sys_pip_install virtualenv
+  
+  virtualenv
+  
+  pip_install ansible
+}
+
+main
+
