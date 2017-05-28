@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+source .envrc
+
+ansible-playbook \
+  -vv \
+  -i local.ini \
+  --extra-vars @extra-vars.yml \
+  playbooks/mac-dev.yml

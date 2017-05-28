@@ -1,0 +1,6 @@
+---
+- name: install gnu-tar
+  homebrew:
+    name: gnu-tar
+    install_options: with-default-names
+
