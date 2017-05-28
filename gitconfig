@@ -1,0 +1,18 @@
+[user]
+  name = {{ username }}
+  email = {{ email }}
+
+[core]
+  editor = vim
+
+[alias]
+  st = status
+  di = diff
+  ds = diff --staged
+  co = checkout
+  ci = commit
+  dci = duet-commit
+  br = branch
+  praise = blame
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  drb = rebase -i --exec 'git duet-commit --amend --reset-author'

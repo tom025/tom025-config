@@ -2,6 +2,8 @@
 - hosts: mac-dev
   vars:
     vimfiles_path: "{{ ansible_env.HOME }}/.vim"
+    git:
+
   tasks:
     - name: install chrome
       homebrew_cask:
@@ -76,3 +78,34 @@
       args:
         creates: "{{ vimfiles_path }}/plugged"
 
+    - name: git_username_prompt
+      pause:
+        prompt: "Please specify git username: [{{ ansible_user_gecos }}]"
+        private: no
+      register: git_username_prompt
+      when: git.username is undefined
+
+    - name: git_email_prompt
+      pause:
+        prompt: "Please specify git email: [{{ ansible_user_id + '@' + ansible_fqdn }}]"
+        private: no
+      register: git_email_prompt
+      when: git.email is undefined
+
+    - name: set git.email var
+      set_fact:
+        git:
+          username: "{{ git_username_prompt.user_input|default(ansible_user_gecos, true) }}"
+          email: "{{ git_email_prompt.user_input|default(ansible_user_id + '@' + ansible_fqdn, true) }}"
+      when:
+        - git_email_prompt is defined and git.email is undefined
+        - git_username_prompt is defined and git.username is undefined
+
+    - name: ~/.gitconfig
+      template:
+        src: gitconfig
+        dest: "{{ ansible_env.HOME }}/.gitconfig"
+        mode: 0644
+      vars:
+        username: "{{ git.username }}"
+        email: "{{ git.email }}"

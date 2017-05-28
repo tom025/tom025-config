@@ -1,0 +1,7 @@
+---
+# This is some example config for git
+some_var: # This stops the ansible-playbook command from failing with an empty
+          # vars file
+# git:
+  # username: Tom Brand
+  # email: tom025@me.com
