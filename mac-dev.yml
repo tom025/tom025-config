@@ -1,0 +1,6 @@
+---
+- hosts: mac-dev
+  tasks:
+    - name: install chrome
+      homebrew_cask:
+        name: google-chrome

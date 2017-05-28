@@ -6,10 +6,30 @@ SYS_PIP=/usr/local/bin/pip
 SYS_VIRTUALENV=/usr/local/bin/virtualenv
 PATH=.virtualenv/bin:$PATH
 
+function enable_ssh() {
+  if nc -z localhost 22 > /dev/null; then
+    echo "sshd already running"
+  else
+    echo 'Turning on remote login'
+    sudo systemsetup -setremotelogin on
+  fi
+}
+
+function copy_ssh_id() {
+  if ssh-add -L > /dev/null; then
+    echo 'Copying id'
+    ssh-copy-id -o 'StrictHostKeyChecking=no' localhost > /dev/null
+  else
+    echo 'Please add an exsisting ssh key using `ssh-add`'
+    exit 1
+  fi
+}
+
 function install_homebrew() {
   if [[ -d /usr/local/Homebrew ]]; then
     echo "Homebrew already installed"
   else
+    echo 'Installing homebrew'
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     hash -r
   fi
@@ -21,6 +41,18 @@ function brew_install() {
     echo "Brew package \"$package\" is already installed"
   else
     brew install $package
+  fi
+}
+
+function create_caskroom() {
+  local caskroom=$(brew --prefix)/Caskroom
+  local current_user=$(whoami)
+  if [[ -d $caskroom ]]; then
+    echo "$caskroom exists"
+  else
+    echo "Creating $caskroom"
+    sudo mkdir -p $caskroom
+    sudo chown $current_user:admin $caskroom
   fi
 }
 
@@ -52,7 +84,10 @@ function virtualenv {
 }
 
 function main() {
+  enable_ssh
+  copy_ssh_id
   install_homebrew
+  create_caskroom
   brew_install python
   sys_pip_install virtualenv
   
