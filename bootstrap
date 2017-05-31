@@ -90,9 +90,7 @@ function main() {
   create_caskroom
   brew_install python
   sys_pip_install virtualenv
-  
   virtualenv
-  
   pip_install ansible
 }
 

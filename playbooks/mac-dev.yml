@@ -9,6 +9,10 @@
   tasks:
     - include: ansible-deps.yml
 
+    - name: 'install direnv'
+      homebrew:
+        name: direnv
+
     - name: "cask install {{ item.name }}"
       homebrew_cask:
         name: "{{ item }}"
@@ -19,3 +23,10 @@
 
     - include_role:
         name: git
+
+    - name: copy ~/.bashrc
+      copy:
+        src: bashrc
+        dest: "{{ ansible_env.HOME }}/.bashrc"
+        owner: "{{ ansible_env.USER }}"
+        mode: 0644
