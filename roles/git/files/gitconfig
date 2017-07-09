@@ -16,3 +16,9 @@
   praise = blame
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   drb = rebase -i --exec 'git duet-commit --amend --reset-author'
+
+[pull]
+  rebase = true
+
+[merge]
+  ff = only
