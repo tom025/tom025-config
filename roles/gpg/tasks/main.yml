@@ -1,0 +1,9 @@
+---
+- name: "install gpg and tools"
+  homebrew:
+    name: gpg
+  with_items:
+    - gpg
+    - gpg2
+    - gpg-agent
+    - pinentry-mac

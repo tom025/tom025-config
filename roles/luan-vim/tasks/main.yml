@@ -39,15 +39,15 @@
     owner: "{{ ansible_env.USER }}"
     mode: 0755
 
-- name: install elm-format
-  unarchive:
-    src: "https://github.com/avh4/elm-format/releases/download/0.2.0-alpha/elm-format-0.2.0-alpha-mac-x64.tgz"
-    dest: "{{ vimfiles_path }}/bin"
-    owner: "{{ ansible_env.USER }}"
-    mode: 0755
-    remote_src: True
-  environment:
-    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+# - name: install elm-format
+#   unarchive:
+#     src: "https://github.com/avh4/elm-format/releases/download/0.2.0-alpha/elm-format-0.2.0-alpha-mac-x64.tgz"
+#     dest: "{{ vimfiles_path }}/bin"
+#     owner: "{{ ansible_env.USER }}"
+#     mode: 0755
+#     remote_src: True
+#   environment:
+#     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
 
 - name: vim plugins
   shell: "ALL_PLUGINS='true' vim +'PlugClean!' +'PlugUpdate!' +'qall!' > /dev/null"
