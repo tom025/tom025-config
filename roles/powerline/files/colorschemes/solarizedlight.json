@@ -1,0 +1,126 @@
+{
+	"name": "Solarized light",
+	"groups": {
+		"gitstatus": {
+			"fg": "solarized:base00",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_branch": {
+			"fg": "solarized:base00",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_branch_clean": {
+			"fg": "solarized:green",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_branch_dirty": {
+			"fg": "solarized:yellow",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_branch_detached": {
+			"fg": "solarized:violet",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_tag": {
+			"fg": "solarized:cyan",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_behind": {
+			"fg": "solarized:base01",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_ahead": {
+			"fg": "solarized:base01",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_staged": {
+			"fg": "solarized:green",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_unmerged": {
+			"fg": "solarized:magenta",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_changed": {
+			"fg": "solarized:red",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_untracked": {
+			"fg": "solarized:magenta",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus_stashed": {
+			"fg": "solarized:cyan",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"gitstatus:divider": {
+			"fg": "solarized:base00",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"information:additional": {
+			"fg": "solarized:base01",
+			"bg": "solarized:base2",
+			"attrs": []
+		},
+		"information:priority": {
+			"fg": "solarized:violet",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"prompt": {
+			"fg": "solarized:green",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"cwd": {
+			"fg": "solarized:cyan",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"cwd:divider": {
+			"fg": "solarized:base01",
+			"bg": "solarized:base2",
+			"attrs": []
+		},
+		"critical:failure": {
+			"fg": "solarized:red",
+			"bg": "solarized:base3",
+			"attrs": []
+		},
+		"critical:success":           { "fg": "solarized:base3", "bg": "solarized:red", "attrs": [] },
+		"exit_fail": {
+			"fg": "solarized:base3",
+			"bg": "solarized:red",
+			"attrs": []
+		},
+		"exit_success": {
+			"fg": "solarized:base3",
+			"bg": "solarized:red",
+			"attrs": []
+		},
+		"user": {
+			"fg": "solarized:blue",
+			"bg": "solarized:base3",
+			"attrs": ["bold"]
+		},
+		"virtualenv": {
+			"fg": "solarized:cyan",
+			"bg": "solarized:base3",
+			"attrs": []
+		}
+	}
+}

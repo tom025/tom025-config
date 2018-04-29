@@ -1,0 +1,10 @@
+---
+- name: install python
+  homebrew:
+    name: python
+
+- name: ~/.profile.d/.python.profile
+  copy:
+    content: |
+      export PATH={{ python.user_bin }}:$PATH
+    dest: "{{ extensible_bash.profile_d }}/.python.profile"

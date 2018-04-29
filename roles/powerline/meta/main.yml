@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: extensible_bash }
+  - { role: python }

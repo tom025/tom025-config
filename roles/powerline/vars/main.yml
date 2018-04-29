@@ -1,0 +1,3 @@
+---
+powerline:
+  config_dir: "{{ ansible_env.HOME }}/.config/powerline"

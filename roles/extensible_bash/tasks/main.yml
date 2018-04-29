@@ -1,0 +1,23 @@
+---
+- name: profile.d directory
+  file:
+    path: "{{ extensible_bash.profile_d }}"
+    state: directory
+    owner: "{{ extensible_bash.user }}"
+    mode: 0700
+
+- name: profile.d/init.profile
+  file:
+    path: "{{ extensible_bash.profile_d }}/init.profile"
+    state: file
+    owner: "{{ extensible_bash.user }}"
+    mode: 0600
+
+- name: load profile.d from .bash_profile
+  lineinfile:
+    path: "{{ extensible_bash.bash_profile }}"
+    owner: "{{ extensible_bash.user }}"
+    mode: 0600
+    create: yes
+    insertbefore: BOF
+    line: "for p in {{ extensible_bash.profile_d }}/*.profile; do source $p; done"

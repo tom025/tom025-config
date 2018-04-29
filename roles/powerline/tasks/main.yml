@@ -1,0 +1,30 @@
+---
+- name: install powerline
+  pip:
+    name: powerline-status
+    executable: /usr/local/bin/pip3
+    extra_args: --user
+
+- name: ~/.profile.d/powerline.profile
+  copy:
+    content: |
+      if ! command -v powerline > /dev/null; then
+        export PATH={{ python.user_bin }}:$PATH
+      fi
+      source {{ python.user_site_packages }}/powerline/bindings/bash/powerline.sh
+    dest: "{{ extensible_bash.profile_d }}/powerline.profile"
+
+- name: powerline config dir
+  file:
+    path: "{{ powerline.config_dir }}"
+    state: directory
+    owner: "{{ ansible_env.USER }}"
+    mode: 0755
+    recurse: True
+
+- name: copy powerline config
+  copy:
+    src: ./
+    dest: "{{ powerline.config_dir }}"
+    owner: "{{ ansible_env.USER }}"
+    mode: 0755

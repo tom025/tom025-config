@@ -1,0 +1,5 @@
+---
+extensible_bash:
+  bash_profile: "{{ ansible_env.HOME }}/.bash_profile"
+  profile_d: "{{ ansible_env.HOME }}/.profile.d"
+  user: "{{ ansible_env.USER }}"

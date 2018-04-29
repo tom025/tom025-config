@@ -1,2 +1,2 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "$(direnv hook bash)"
+eval "$(direnv hook bash)" > /dev/null 2>&1
