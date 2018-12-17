@@ -5,6 +5,12 @@
     executable: /usr/local/bin/pip3
     extra_args: --user
 
+- name: install powerline git status
+  pip:
+    name: powerline-gitstatus
+    executable: /usr/local/bin/pip3
+    extra_args: --user
+
 - name: ~/.profile.d/powerline.profile
   copy:
     content: |

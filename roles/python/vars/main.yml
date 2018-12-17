@@ -1,4 +1,4 @@
 ---
 python:
-  user_site_packages: "{{ ansible_env.HOME }}/Library/Python/3.6/lib/python/site-packages"
-  user_bin: "{{ ansible_env.HOME }}/Library/Python/3.6/bin"
+  user_site_packages: "{{ ansible_env.HOME }}/Library/Python/3.7/lib/python/site-packages"
+  user_bin: "{{ ansible_env.HOME }}/Library/Python/3.7/bin"
