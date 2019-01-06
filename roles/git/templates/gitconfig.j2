@@ -1,6 +1,9 @@
 [user]
-  name = {{ username }}
-  email = {{ email }}
+  name = {{ username | mandatory }}
+  email = {{ email | mandatory }}
+{% if signingkey %}
+  signingkey = {{ signingkey }}
+{% endif %}
 
 [core]
   editor = vim
@@ -15,10 +18,16 @@
   br = branch
   praise = blame
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  drb = rebase -i --exec 'git duet-commit --amend --reset-author'
+  drb = rebase -i --exec 'git duet-commit --no-edit --amend --reset-author'
 
 [pull]
   rebase = true
 
 [merge]
   ff = only
+
+[commit]
+  verbose = true
+{% if signingkey %}
+  gpgsign = true
+{% endif %}

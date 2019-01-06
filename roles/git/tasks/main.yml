@@ -1,9 +1,37 @@
 ---
+- name: install git
+  homebrew:
+    name: git
+
+- name: setup gpg
+  block:
+    - name: install gnupg
+      homebrew:
+        name: gnupg
+
+    - name: check if key is imported
+      command: |
+        gpg --list-public-keys {{ git.signingkey }}
+      register: imported_key
+      failed_when: |
+        imported_key.rc > 0
+        and no_public_key_message not in imported_key.stderr_lines
+      changed_when: false
+
+    - name: import signingkey
+      command: |
+        gpg --keyserver hkps://pgp.mit.edu --recv {{ git.signingkey }}
+      when: |
+        no_public_key_message in imported_key.stderr_lines
+  when: git.signingkey is defined
+
 - name: ~/.gitconfig
   template:
-    src: files/gitconfig
+    src: gitconfig.j2
     dest: "{{ ansible_env.HOME }}/.gitconfig"
     mode: 0644
   vars:
-    username: "{{ git.username }}"
-    email: "{{ git.email }}"
+    username: "{{ git.username | mandatory }}"
+    email: "{{ git.email | mandatory }}"
+    signingkey: "{{ git.signingkey }}"
+

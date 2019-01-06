@@ -1,3 +1,0 @@
-git:
-  username: "{{ ansible_user_gecos }}"
-  email: "{{ ansible_user_id + '@' + ansible_fqdn }}"

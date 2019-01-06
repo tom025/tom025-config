@@ -21,8 +21,11 @@
     - include_role:
         name: luan-vim
 
-    - include_role:
+    - name: 'setup git'
+      import_role:
         name: git
+      tags:
+        - git
 
     - include_role:
         name: powerline
